@@ -1,0 +1,11 @@
+--- a/html/profiles/contrib/social/modules/social_features/social_mentions/social_mentions.tokens.inc	2020-03-20 12:01:45.000000000 +0100
++++ b/html/profiles/contrib/social/modules/social_features/social_mentions/social_mentions.tokens.inc	2020-03-31 13:17:53.000000000 +0200
+@@ -112,7 +112,7 @@
+               ->getStorage($target_type)
+               ->load($target_id);
+ 
+-            if ($mentioned_entity = $mention->getMentionedEntity()) {
++            if (isset($mention) && ($mentioned_entity = $mention->getMentionedEntity())) {
+               if ($mentioned_entity->getEntityTypeId() === 'comment') {
+                 $entity = $mentioned_entity->getCommentedEntity();
+               }

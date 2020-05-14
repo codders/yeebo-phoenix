@@ -1,0 +1,21 @@
+--- a/html/profiles/contrib/social/modules/social_features/social_search/src/EventSubscriber/RedirectSubscriber.php
++++ b/html/profiles/contrib/social/modules/social_features/social_search/src/EventSubscriber/RedirectSubscriber.php
+@@ -103,14 +103,11 @@
+ 
+     // Workaround for drupal.org issue #3085806.
+     if (empty($query) || empty($query['created_op'])) {
+-      $query = ['created_op' => '<'];
++      $query['created_op'] = '<';
+       $parameters = $this->currentRoute->getParameters();
+-      $currentUrl = Url::fromRoute($this->currentRoute->getRouteName());
+-      if (!empty($parameters->get('keys'))) {
+-        $currentUrl = Url::fromRoute($this->currentRoute->getRouteName(), ['keys' => $parameters->get('keys')]);
+-      }
+-      $redirect_path = $currentUrl->toString();
+-      $redirect = Url::fromUserInput($redirect_path, ['query' => $query]);
++
++      $redirect = Url::fromRoute($this->currentRoute->getRouteName(), $parameters->all());
++      $redirect->setOptions(['query' => $query]);
+ 
+       $event->setResponse(new RedirectResponse($redirect->toString()));
+     }
