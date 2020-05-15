@@ -18,6 +18,6 @@ yeebo-opensocial-theme-v$(THEME_VERSION).tar.gz:
 	curl -L https://github.com/codders/yeebo-opensocial-theme/archive/v1.0.0.tar.gz > $@
 
 clean:
-	rm -rf vendor html yeebo-opensocial-theme*.tar.gz
+	rm -rf vendor html yeebo-opensocial-theme*.tar.gz private backup
 
 .PHONY: clean
