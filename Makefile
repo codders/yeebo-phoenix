@@ -13,6 +13,8 @@ html: yeebo-opensocial-theme-v$(THEME_VERSION).tar.gz
 	cp -a modules/* html/modules
 	# Install theme
 	mkdir -p html/themes/custom && tar xpvf yeebo-opensocial-theme-v$(THEME_VERSION).tar.gz -C html/themes/custom --transform="s/^yeebo-opensocial-theme-$(THEME_VERSION)/yeebo_v1/"
+	# Copy settings.php (to support private files)
+	cp config/settings.php html/sites/default
 
 yeebo-opensocial-theme-v$(THEME_VERSION).tar.gz:
 	curl -L https://github.com/codders/yeebo-opensocial-theme/archive/v1.0.0.tar.gz > $@
